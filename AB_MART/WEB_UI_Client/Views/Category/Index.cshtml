@@ -4,18 +4,109 @@
     ViewData["Title"] = "Categories";
 }
 
-<div class="container mt-4">
-    <div class="card shadow-lg border-0">
-        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-            <h2 class="mb-0">Category List</h2>
-            <a asp-action="Create" class="btn btn-success">
+<style>
+    /* Split Background */
+    .split-bg {
+        background: linear-gradient(to right, #6a11cb, #2575fc 50%, #1b1b1b 50%, #2c2c2c);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+    }
+
+    /* Glassmorphism Effect */
+    .glass-card {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        border-radius: 15px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        padding: 25px;
+        width: 85%;
+        max-width: 900px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    /* Table Styling */
+    .table-custom {
+        background: rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .table-hover tbody tr:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.02);
+    }
+
+    /* Buttons */
+    .btn-create {
+        background: linear-gradient(to right, #ff416c, #ff4b2b);
+        color: white;
+        font-weight: bold;
+        padding: 10px 15px;
+        border-radius: 30px;
+        transition: 0.3s;
+    }
+
+        .btn-create:hover {
+            background: linear-gradient(to right, #e52d27, #b31217);
+        }
+
+    .btn-action {
+        border-radius: 30px;
+        transition: 0.3s ease-in-out;
+    }
+
+    .btn-warning {
+        background: linear-gradient(to right, #ff9a44, #fc6076);
+        color: white;
+    }
+
+        .btn-warning:hover {
+            background: linear-gradient(to right, #e65c00, #f9d423);
+        }
+
+    .btn-info {
+        background: linear-gradient(to right, #00c9ff, #92fe9d);
+        color: white;
+    }
+
+        .btn-info:hover {
+            background: linear-gradient(to right, #2f80ed, #56ccf2);
+        }
+
+    .btn-danger {
+        background: linear-gradient(to right, #d31027, #ea384d);
+        color: white;
+    }
+
+        .btn-danger:hover {
+            background: linear-gradient(to right, #a71d31, #ff4e50);
+        }
+
+    /* Heading Glow */
+    .heading-glow {
+        color: white;
+        text-shadow: 3px 3px 15px rgba(255, 255, 255, 0.6);
+    }
+</style>
+
+<div class="split-bg">
+    <div class="glass-card">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="heading-glow">Category List</h2>
+            <a asp-action="Create" class="btn btn-create shadow">
                 <i class="fas fa-plus-circle"></i> Create New
             </a>
         </div>
-        <div class="card-body">
-            @if (Model != null && Model.Any())
-            {
-                <table class="table table-hover table-bordered text-center">
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-hover table-custom text-center table-bordered">
                     <thead class="table-dark">
                         <tr>
                             <th>@Html.DisplayNameFor(model => model.Id)</th>
@@ -30,13 +121,13 @@
                                 <td>@Html.DisplayFor(modelItem => item.Id)</td>
                                 <td>@Html.DisplayFor(modelItem => item.Name)</td>
                                 <td>
-                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm px-md-4">
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm btn-action shadow">
                                         <i class="fas fa-edit"></i> Edit
                                     </a>
-                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm px-md-4">
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm btn-action shadow">
                                         <i class="fas fa-info-circle"></i> Details
                                     </a>
-                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm px-md-4">
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm btn-action shadow">
                                         <i class="fas fa-trash"></i> Delete
                                     </a>
                                 </td>
@@ -44,13 +135,13 @@
                         }
                     </tbody>
                 </table>
-            }
-            else
-            {
-                <div class="alert alert-warning text-center" role="alert">
-                    <i class="fas fa-exclamation-triangle"></i> No categories found. Please add a new category.
-                </div>
-            }
-        </div>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-warning text-center fw-bold">
+                <i class="fas fa-exclamation-triangle"></i> No categories found. Please add a new category.
+            </div>
+        }
     </div>
 </div>

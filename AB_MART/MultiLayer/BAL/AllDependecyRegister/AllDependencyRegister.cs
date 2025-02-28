@@ -16,6 +16,7 @@ namespace BAL.AllDependecyRegister
             services.AddScoped<ICategoryRepository, CategoryRepository>();
 
             //add automapper dependecy
+
             services.AddAutoMapper(typeof(MyMapperProfile));
 
         }

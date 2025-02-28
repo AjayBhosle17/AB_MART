@@ -4,42 +4,90 @@
     ViewData["Title"] = "Create Category";
 }
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card shadow-lg border-0 rounded-4">
-                <div class="card-header bg-success text-white text-center">
-                    <h3 class="m-0">Create Category</h3>
-                </div>
-                <div class="card-body">
-                    <form asp-action="Create">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<style>
+    /* Split Background */
+    .split-bg {
+        background: linear-gradient(to right, #ff9a9e, #fad0c4 50%, #a18cd1 50%, #fbc2eb);
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-                        <div class="mb-3">
-                            <label asp-for="Name" class="form-label fw-bold">Category Name</label>
-                            <input asp-for="Name" class="form-control rounded-3 shadow-sm" placeholder="Enter category name" />
-                            <span asp-validation-for="Name" class="text-danger"></span>
-                        </div>
+    /* Glassmorphism effect for form */
+    .glass-card {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        padding: 30px;
+        max-width: 500px;
+        width: 100%;
+    }
 
-                        <div class="d-grid mt-4">
-                            <button type="submit" class="btn btn-success btn-lg rounded-3">
-                                <i class="fas fa-plus-circle"></i> Create
-                            </button>
-                        </div>
-                    </form>
-                </div>
+    /* Stylish button */
+    .btn-custom {
+        background: linear-gradient(to right, #ff758c, #ff7eb3);
+        border: none;
+        color: white;
+        font-weight: bold;
+        padding: 12px;
+        border-radius: 30px;
+        transition: 0.3s;
+    }
+
+        .btn-custom:hover {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+        }
+</style>
+
+<div class="split-bg">
+    <div class="glass-card text-center">
+        <h2 class="fw-bold text-white">Create Category</h2>
+
+        <!-- Success Message -->
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>@TempData["SuccessMessage"]</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-            <div class="text-center mt-3">
-                <a asp-action="Index" class="btn btn-outline-secondary rounded-3">
-                    <i class="fas fa-arrow-left"></i> Back to List
-                </a>
+        }
+
+        <!-- Error Message -->
+        @if (ViewData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>@ViewData["ErrorMessage"]</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
+        }
+
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label fw-bold text-white">Category Name</label>
+                <input asp-for="Name" class="form-control rounded-3 shadow-sm border-secondary" placeholder="Enter category name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-custom btn-lg shadow">
+                    <i class="fas fa-plus-circle"></i> Create Category
+                </button>
+            </div>
+        </form>
+
+        <div class="text-center mt-4">
+            <a asp-action="Index" class="btn btn-outline-light rounded-pill shadow-sm">
+                <i class="fas fa-arrow-left"></i> Back to List
+            </a>
         </div>
     </div>
 </div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }

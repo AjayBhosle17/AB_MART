@@ -17,7 +17,7 @@ namespace WEB_UI_Client
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddIdentity<IdentityUser,IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDBContext>();
             builder.Services.AddControllersWithViews();
 
@@ -50,7 +50,7 @@ namespace WEB_UI_Client
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
-            app.MapRazorPages();
+           // app.MapRazorPages();
 
             app.Run();
         }

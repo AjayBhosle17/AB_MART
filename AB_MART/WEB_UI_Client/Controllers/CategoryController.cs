@@ -1,6 +1,7 @@
 ﻿using DAL;
 using DAL.Entities;
 using DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WEB_UI_Client.Controllers
@@ -22,13 +23,12 @@ namespace WEB_UI_Client.Controllers
         }
 
         [HttpGet]
-
+        [Authorize]
         public IActionResult Create() { 
         
             return View();
         }
 
-        [HttpPost]
         [HttpPost]
         public IActionResult Create(CategoryModel category)
         {
@@ -37,18 +37,21 @@ namespace WEB_UI_Client.Controllers
 
             if (existingCategory != null)
             {
-                ModelState.AddModelError("Name", "This category already exists. Please choose a different name.");
-                return View();
+                ViewData["ErrorMessage"] = "Failed to add category. The name already exists.";
+                return View(category);
             }
 
             if (ModelState.IsValid)
             {
                 _service.Create(category);
+                TempData["SuccessMessage"] = "Category added successfully!";
                 return RedirectToAction("Index");
             }
 
+            ViewData["ErrorMessage"] = "Failed to add category. Please check your input.";
             return View(category);
         }
+
 
 
 
