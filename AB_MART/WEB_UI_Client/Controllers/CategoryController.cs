@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WEB_UI_Client.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         ICategoryService _service;

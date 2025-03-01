@@ -4,78 +4,60 @@
     ViewData["Title"] = "Create Product";
 }
 
-<!-- Bootstrap 5 Styling -->
 <style>
-    /* Full Page Centering */
+    /* Background with Image */
     .background-container {
         background: url('/productbackground.jpg') no-repeat center center fixed;
         background-size: cover;
-        min-height: 100vh;
+        height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 20px;
     }
 
-    /* Card Styling */
-    .product-card {
-        background: rgba(255, 255, 255, 0.9);
+    /* Glassmorphism Card */
+    .glass-card {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
         border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         padding: 30px;
+        max-width: 500px;
         width: 100%;
-        max-width: 600px;
+        color: white;
     }
 
-    /* Input Fields */
     .form-control {
-        border-radius: 8px;
-        border: 1px solid #ddd;
+        background: rgba(255, 255, 255, 0.8);
+        border: none;
+        border-radius: 10px;
         padding: 10px;
     }
 
     /* Stylish Button */
     .btn-custom {
-        background: #007bff;
+        background: linear-gradient(to right, #ff758c, #ff7eb3);
+        border: none;
         color: white;
         font-weight: bold;
         padding: 12px;
-        border-radius: 8px;
+        border-radius: 30px;
         transition: 0.3s;
         width: 100%;
     }
 
         .btn-custom:hover {
-            background: #0056b3;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
         }
 
-    /* Back Button */
-    .btn-back {
-        border: 1px solid #007bff;
-        color: #007bff;
-        padding: 8px 15px;
-        border-radius: 8px;
-        transition: 0.3s;
-        display: block;
-        text-align: center;
-        margin-top: 10px;
-    }
-
-        .btn-back:hover {
-            background: #007bff;
-            color: white;
-        }
-
-    h2 {
-        font-weight: bold;
-        text-align: center;
-        color: #333;
+    h2, label {
+        color: white;
     }
 </style>
 
 <div class="background-container">
-    <div class="product-card">
-        <h2>Create Product</h2>
+    <div class="glass-card">
+        <h2 class="text-center fw-bold">Create Product</h2>
         <hr />
 
         <form asp-action="Create">
@@ -111,14 +93,18 @@
                 <span asp-validation-for="HomeImgUrl" class="text-danger"></span>
             </div>
 
-            <button type="submit" class="btn btn-custom">
-                <i class="fas fa-plus-circle"></i> Create Product
-            </button>
+            <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-custom shadow">
+                    <i class="fas fa-plus-circle"></i> Create Product
+                </button>
+            </div>
         </form>
 
-        <a asp-action="Index" class="btn-back">
-            <i class="fas fa-arrow-left"></i> Back to List
-        </a>
+        <div class="text-center mt-4">
+            <a asp-action="Index" class="btn btn-outline-light rounded-pill shadow-sm">
+                <i class="fas fa-arrow-left"></i> Back to List
+            </a>
+        </div>
     </div>
 </div>
 

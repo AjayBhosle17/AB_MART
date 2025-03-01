@@ -16,6 +16,7 @@ namespace BAL.AutoMapper
         {
 
             CreateMap<Category, CategoryModel>().ReverseMap();
+            CreateMap<Product, ProductModel>().ReverseMap();    
         }
     }
 }

@@ -1,10 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DAL.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace DTO
 {
     public class RegisterModel
     {
-      
+
+        public ApplicationUser applicationUser { get; set; } = new ApplicationUser();
+
+        public string StatusMessage { get; set; }
+
+
         [Required(ErrorMessage = "First name is required.")]
         [MaxLength(50)]
         public string FirstName { get; set; }
@@ -13,9 +19,10 @@ namespace DTO
         [MaxLength(50)]
         public string LastName { get; set; }
 
+
         [Required(ErrorMessage = "Username is required.")]
         [MaxLength(30)]
-        public string Username { get; set; }
+        public string UserName { get; set; }
 
         [Required(ErrorMessage = "Email is required.")]
         [EmailAddress(ErrorMessage = "Invalid email format.")]
@@ -24,6 +31,7 @@ namespace DTO
         [Required(ErrorMessage = "Address is required.")]
         [MaxLength(255)]
         public string Address { get; set; }
+
 
         [Required(ErrorMessage = "State is required.")]
         [MaxLength(50)]

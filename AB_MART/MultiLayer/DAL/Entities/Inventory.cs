@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-    public class Category
+    public class Inventory
     {
         [Key]
         public int Id { get; set; }
+
         public string Name { get; set; }
+        public double  Purchase_Price { get; set; }
 
-
-
+        public string Category { get; set; }
+        public int Quantity { get; set; }
     }
 }

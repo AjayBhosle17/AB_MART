@@ -19,6 +19,9 @@ namespace BAL.AllDependecyRegister
 
             services.AddAutoMapper(typeof(MyMapperProfile));
 
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+
         }
     }
 }

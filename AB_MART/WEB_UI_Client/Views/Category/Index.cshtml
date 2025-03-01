@@ -93,55 +93,56 @@
         text-shadow: 3px 3px 15px rgba(255, 255, 255, 0.6);
     }
 </style>
-
 <div class="split-bg">
-    <div class="glass-card">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2 class="heading-glow">Category List</h2>
-            <a asp-action="Create" class="btn btn-create shadow">
-                <i class="fas fa-plus-circle"></i> Create New
-            </a>
-        </div>
+    <div class="container-fluid d-flex justify-content-center">
+        <div class="glass-card">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="heading-glow">Category List</h2>
+                <a asp-action="Create" class="btn btn-create shadow">
+                    <i class="fas fa-plus-circle"></i> Create New
+                </a>
+            </div>
 
-        @if (Model != null && Model.Any())
-        {
-            <div class="table-responsive">
-                <table class="table table-hover table-custom text-center table-bordered">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>@Html.DisplayNameFor(model => model.Id)</th>
-                            <th>@Html.DisplayNameFor(model => model.Name)</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
+            @if (Model != null && Model.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover table-custom text-center table-bordered">
+                        <thead class="table-dark">
                             <tr>
-                                <td>@Html.DisplayFor(modelItem => item.Id)</td>
-                                <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm btn-action shadow">
-                                        <i class="fas fa-edit"></i> Edit
-                                    </a>
-                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm btn-action shadow">
-                                        <i class="fas fa-info-circle"></i> Details
-                                    </a>
-                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm btn-action shadow">
-                                        <i class="fas fa-trash"></i> Delete
-                                    </a>
-                                </td>
+                                <th>@Html.DisplayNameFor(model => model.Id)</th>
+                                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                                <th>Actions</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        }
-        else
-        {
-            <div class="alert alert-warning text-center fw-bold">
-                <i class="fas fa-exclamation-triangle"></i> No categories found. Please add a new category.
-            </div>
-        }
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm btn-action shadow">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </a>
+                                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm btn-action shadow">
+                                            <i class="fas fa-info-circle"></i> Details
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm btn-action shadow">
+                                            <i class="fas fa-trash"></i> Delete
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-warning text-center fw-bold">
+                    <i class="fas fa-exclamation-triangle"></i> No categories found. Please add a new category.
+                </div>
+            }
+        </div>
     </div>
 </div>
